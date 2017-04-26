@@ -1,0 +1,32 @@
+create database course;
+use course;
+create table dept(
+	dept_name varchar(10),
+	campus varchar(10),
+	primary key(dept_name));
+create table student(
+	name varchar(10),
+	student_id varchar(12),
+	dept_name varchar(10),
+	primary key(student_id),
+	foreign key(dept_name) references dept(dept_name));
+create table teacher(
+	teacher_id varchar(12),
+	name varchar(10),
+	dept_name varchar(10),
+	primary key(teacher_id),
+	foreign key(dept_name) references dept(dept_name));
+create table course(
+	course_id int,
+	course_name varchar(20),
+	time varchar(10),
+	place varchar(10),
+	teacher_id varchar(12),
+	credit int,
+	primary key(course_id),
+	foreign key(teacher_id) references teacher(teacher_id));
+create table course_select(
+	student_id varchar(12),
+	course_id int,
+	foreign key(student_id) references student(student_id),
+	foreign key(course_id) references course(course_id));
